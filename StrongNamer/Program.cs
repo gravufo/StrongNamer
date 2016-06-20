@@ -1,10 +1,7 @@
 ﻿using Signature.Core;
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace StrongNamer
 {
@@ -38,7 +35,7 @@ namespace StrongNamer
             {
                 var parts = Path.GetFileNameWithoutExtension(filename).Split('.').ToList();
                 var version = "";
-                while (parts[parts.Count - 1].All(x => char.IsDigit(x)))
+                while (parts[parts.Count - 1].All(char.IsDigit))
                 {
                     version = "." + parts[parts.Count - 1] + version;
                     parts.RemoveAt(parts.Count - 1);
@@ -52,12 +49,12 @@ namespace StrongNamer
 
             public string SignedPackageName()
             {
-                return Identifier + ".StrongNamed." + Version + ".nupkg";
+                return $"Genetec.{Identifier}.{Version}.nupkg";
             }
 
             public string SignedIdentifier()
             {
-                return Identifier + ".StrongNamed";
+                return $"Genetec.{Identifier}";
             }
         }
     }
